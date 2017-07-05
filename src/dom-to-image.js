@@ -15,6 +15,7 @@
     };
 
     var domtoimage = {
+        toCanvas: toCanvas,
         toSvg: toSvg,
         toPng: toPng,
         toJpeg: toJpeg,
@@ -80,6 +81,18 @@
 
             return clone;
         }
+    }
+
+    /**
+     * @param {Node} node - The DOM Node object to render
+     * @param {Object} options - Rendering options, @see {@link toSvg}
+     * @return {Promise} - A promise that is fulfilled with a Uint8Array containing RGBA pixel data.
+     * */
+    function toCanvas(node, options) {
+        return draw(node, options || {})
+            .then(function(canvas) {
+                return canvas;
+            });
     }
 
     /**
